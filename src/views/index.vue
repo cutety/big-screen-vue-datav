@@ -67,11 +67,14 @@
               </dv-border-box-11>
           </div>
           <div class="mid-box">
-            <!-- 中间 -->
-            <div>
-              <center />
-              <map />
-            </div>
+            <!-- 卡片 -->
+            <dv-border-box12>
+              <student-card />
+            </dv-border-box12>
+            <!-- 地图 -->
+            <dv-border-box10>
+              <student-map />
+            </dv-border-box10>
             <!-- 中间 -->
           </div>
 
@@ -97,11 +100,11 @@
 import { formatTime } from '../utils/index.js'
 import majorRank from "./majorRank";
 import studentInfo from "./studentInfo";
-import center from "./center";
 import maleToFemaleRatio from "./maleToFemaleRatio";
 import studentTop from "@/views/studentTop";
 import studentAge from "@/views/studentAge";
-import map from '@/views/map'
+import studentMap from "@/views/studentMap";
+import studentCard from "@/views/studentCard";
 
 export default {
   data () {
@@ -116,11 +119,12 @@ export default {
   components: {
     majorRank,
     studentInfo,
-    center,
     maleToFemaleRatio,
     studentTop,
     studentAge,
-    map
+    studentMap,
+    studentCard
+
   },
   mounted () {
     this.timeFn();

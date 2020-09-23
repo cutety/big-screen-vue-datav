@@ -92,17 +92,18 @@
       justify-content: space-between;
       flex-direction: row;
 
-      //下方区域的布局
+      //左侧区域
       .content-box {
         display: flex;
         flex-direction: column;
 
       }
+      //中间区域
       .mid-box {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-rows:100px 850px ;
       }
-      // 底部数据
+      // 右侧区域
       .bototm-box {
         display: flex;
         flex-direction: column;

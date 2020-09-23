@@ -1,19 +1,17 @@
 <template>
-  <div class="up">
-    <!--bg-color-black 遮罩-->
-    <div class="bg-color-black item" v-for="item in titleItem" :key="item.title">
-      <p class="ml-3 colorBlue fw-b">{{item.title}}</p>
-      <div>
-        <dv-digital-flop :config="item.number" style="width:1.35rem;height:.525rem;" />
+  <div id="center">
+    <div class="up">
+      <div class="bg-color-black item" v-for="item in titleItem" :key="item.title">
+        <p class="ml-3 colorBlue fw-b">{{item.title}}</p>
+        <div>
+          <dv-digital-flop :config="item.number" style="width:1.35rem;height:.525rem;" />
+        </div>
       </div>
     </div>
-
   </div>
-
 </template>
 
 <script>
-
 export default {
   data () {
     return {
@@ -46,10 +44,8 @@ export default {
     };
   },
   components:{
-
   },
   created() {
-
   }
 };
 </script>
@@ -58,13 +54,11 @@ export default {
 #center {
   display: flex;
   flex-direction: column;
-  height: 1.2rem;
   .up {
-    width: 15rem;
+    width: 1200px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    height: 1.2rem;
     .item {
       border-radius: 0.0625rem;
       padding-top: 0.2rem;
@@ -73,6 +67,10 @@ export default {
       height: 1.2rem;
     }
   }
-
+  .down {
+    width: 1200px;
+    display: flex;
+    height: 10rem;
+  }
 }
 </style>
