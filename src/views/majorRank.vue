@@ -1,6 +1,8 @@
 <template>
   <div>
-      <dv-scroll-ranking-board :config="config" style="width:280px;height:5rem;margin-left:20px;padding-top:50px"/>
+    <div style="width:400px;height:32%;padding-top:55px">
+      <dv-scroll-ranking-board :config="config" style="width:280px;height:3.5rem;margin-left: 50px"/>
+    </div>
   </div>
 </template>
 <script>

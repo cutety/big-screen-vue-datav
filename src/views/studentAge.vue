@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div id="app" style="width:280px;height:350px;margin-left:20px;padding-top:50px">
-      <div id="main" style="width:280px;height:350px"></div>
+    <div id="app" style="width:280px;height:33%;margin-left:20px;padding-top:50px">
+      <div id="main" style="width:280px;height:300px"></div>
     </div>
   </div>
 </template>

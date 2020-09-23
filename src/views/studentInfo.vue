@@ -1,8 +1,9 @@
 <template>
-  <div id="centreRight1">
-      <div class="d-flex jc-center body-box">
-        <dv-scroll-board :config="config" style="width:6.5rem;height:33%;padding-top:40px " />
-      </div>
+  <div id="studentInfo" >
+    <div style="width:400px;height:32%;padding-top:50px ">
+      <dv-scroll-board :config="config" style="width:100%;height:3rem" />
+    </div>
+
   </div>
 </template>
 
@@ -26,7 +27,7 @@ export default {
           ['王振铎', '171164241', '数据科学与大数据技术'],
           ['梁琼珂', '171164243', '人工智能']
         ],
-        rowNum: 7, //表格行数
+        rowNum: 5, //表格行数
         headerHeight: 35,
         headerBGC: "#0f1325", //表头
         oddRowBGC: "#0f1325", //奇数行

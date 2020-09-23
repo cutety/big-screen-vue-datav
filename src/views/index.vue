@@ -8,7 +8,7 @@
           <div class="d-flex jc-center">
             <dv-decoration-8 :color="['#568aea', '#000000']" style="width:2.5rem;height:.625rem;" />
             <div class="title">
-              <span class="title-text">大数据可视化平台</span>
+              <span class="title-text">信息技术学院</span>
               <dv-decoration-6
                 class="title-bototm"
                 :reverse="true"
@@ -41,7 +41,7 @@
           </div>
           <div style="width: 40%" class="d-flex">
             <div class="react-left bg-color-blue mr-3">
-              <span class="text fw-b">vue-big-screen</span>
+              <span class="text fw-b">学生信息可视化</span>
             </div>
             <div
               class="react-left mr-4"
@@ -55,40 +55,37 @@
 
         <div class="body-box">
           <!-- 第三行数据 -->
-          <div class="content-box">
-            <div>
-              <dv-border-box-12>
-                <centerLeft1 />
-              </dv-border-box-12>
-            </div>
-            <div>
-              <dv-border-box-12>
-                <centerLeft2 />
-              </dv-border-box-12>
-            </div>
+          <div class="  content-box">
+              <dv-border-box-11 title="学生信息">
+                <student-info />
+              </dv-border-box-11>
+              <dv-border-box-11 title="男女比例">
+                <maleToFemaleRatio />
+              </dv-border-box-11>
+              <dv-border-box-11 title="专业热度排行">
+                <majorRank />
+              </dv-border-box-11>
+          </div>
+          <div class="mid-box">
             <!-- 中间 -->
             <div>
               <center />
+              <map />
             </div>
             <!-- 中间 -->
-            <div>
-              <centerRight2 />
-            </div>
-            <div>
-              <dv-border-box-13>
-                <centerRight1 />
-              </dv-border-box-13>
-            </div>
           </div>
 
           <!-- 第四行数据 -->
           <div class="bototm-box">
-            <dv-border-box-13>
-              <bottomLeft />
-            </dv-border-box-13>
-            <dv-border-box-12>
-              <bottomRight />
-            </dv-border-box-12>
+            <dv-border-box-11 title="院系之最">
+              <studentTop />
+            </dv-border-box-11>
+            <dv-border-box-11 title="年龄分布">
+              <studentAge />
+            </dv-border-box-11>
+            <dv-border-box-11 title="还没想好">
+              <student-top />
+            </dv-border-box-11>
           </div>
         </div>
       </div>
@@ -98,13 +95,14 @@
 
 <script>
 import { formatTime } from '../utils/index.js'
-import centerLeft1 from "./centerLeft1";
-import centerLeft2 from "./centerLeft2";
-import centerRight1 from "./centerRight1";
-import centerRight2 from "./centerRight2";
+import majorRank from "./majorRank";
+import studentInfo from "./studentInfo";
 import center from "./center";
-import bottomLeft from "./bottomLeft";
-import bottomRight from "./bottomRight";
+import maleToFemaleRatio from "./maleToFemaleRatio";
+import studentTop from "@/views/studentTop";
+import studentAge from "@/views/studentAge";
+import map from '@/views/map'
+
 export default {
   data () {
     return {
@@ -116,13 +114,13 @@ export default {
     };
   },
   components: {
-    centerLeft1,
-    centerLeft2,
-    centerRight1,
-    centerRight2,
+    majorRank,
+    studentInfo,
     center,
-    bottomLeft,
-    bottomRight
+    maleToFemaleRatio,
+    studentTop,
+    studentAge,
+    map
   },
   mounted () {
     this.timeFn();
