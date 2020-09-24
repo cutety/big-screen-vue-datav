@@ -26,7 +26,13 @@ import './assets/scss/style.scss';
 //引入echart
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
-
+import VueAxios from 'vue-axios'
+Vue.use(VueAxios,axios);
+//引入axios
+import axios from 'axios';
+Vue.prototype.$axios = axios //全局注册，使用方法为:this.$axios
+axios.defaults.baseURL="/api" //baseURL
+axios.defaults.withCredentials=true //跨域请求是否提供凭证
 
 
 Vue.config.productionTip = false;

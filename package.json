@@ -1,5 +1,5 @@
 {
-  "name": "big-screen-vue-datav",
+  "name": "lynu",
   "version": "1.0.1",
   "private": true,
   "scripts": {
@@ -10,19 +10,21 @@
   "dependencies": {
     "@jiaminghi/data-view": "^2.7.3",
     "@types/echarts": "^4.4.3",
+    "@vue/cli-service": "^4.5.6",
     "core-js": "^3.6.4",
     "echarts": "^4.6.0",
     "echarts-extension-amap": "^1.5.0",
     "element-ui": "^2.13.2",
     "vue": "^2.6.11",
     "vue-awesome": "^4.0.2",
+    "vue-axios": "^2.1.5",
     "vue-router": "^3.1.5",
     "vuex": "^3.1.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.2.0",
     "@vue/cli-plugin-eslint": "^4.2.0",
-    "@vue/cli-service": "^4.2.0",
+    "axios": "^0.20.0",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.1.2",

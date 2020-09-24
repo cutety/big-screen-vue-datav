@@ -15,6 +15,7 @@
 export default {
   data () {
     return {
+
       titleItem: [
         {
           title: "学院人数",
@@ -46,6 +47,11 @@ export default {
   components:{
   },
   created() {
+    const _this = this
+    this.$axios.get("/stu_info/amount/19").then(response => {
+      _this.titleItem[0].number.number[0] = response.data
+      _this.titleItem[0].number = {..._this.titleItem[0].number}
+    })
   }
 };
 </script>

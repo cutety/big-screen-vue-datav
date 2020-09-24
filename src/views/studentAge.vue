@@ -19,20 +19,59 @@ export default {
         },
         tooltip: {},
         legend: {
-          data: ["销量"]
+          data: ["人数"],
+          textStyle:{
+            color:'#48D1CC',
+          }
         },
         xAxis: {
-          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+          data: [],
+          axisLine:{
+            lineStyle:{
+              color:'#48D1CC',
+              width:1
+            }
+          }
         },
-        yAxis: {},
+        yAxis: {
+          axisLine:{
+            lineStyle:{
+              color:'#48D1CC',
+              width:1
+            }
+          }
+        },
         series: [
           {
-            name: "销量",
+            name: "人数",
             type: "bar",
-            data: [5, 20, 36, 10, 10, 20]
+            data: [],
+            itemStyle:{
+              normal: {
+                label: {
+                  show: true, //开启显示
+                  position: 'top', //在上方显示
+                  textStyle: { //数值样式
+                    fontSize: 16
+                  }
+                }
+
+              }
+            }
           }
-        ]
+        ],
+        color:'#48D1CC'
       };
+      this.$axios.get("/stu_info/age_distribution/19").then(response => {
+        let ageData = response.data
+        ageData.forEach((item) => {
+          option.xAxis.data.push(item.age.toString())
+          option.series[0].data.push(item.amount)
+        })
+        option = { ...option}
+        console.log(option.xAxis.data)
+        console.log(option.series[0].data)
+      })
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
     }

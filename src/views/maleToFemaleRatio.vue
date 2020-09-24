@@ -12,13 +12,12 @@ export default {
       lineWidth: 30,
       activeRadius: "90%",
       radius: "80%",
-      activeTimeGap: 3000,
+      activeTimeGap: 5000,
       config:{
         data: [
           {
             name: '男生',
-            value: 39,
-
+            value: 11,
           },
           {
             name: '女生',
@@ -32,6 +31,14 @@ export default {
         }
       }
     }
+  },
+  created() {
+    const _this = this
+    this.$axios.get("/stu_info/male_and_female_amount").then(response => {
+      _this.config.data[0].value = response.data.male
+      _this.config.data[1].value = response.data.female
+      _this.config = { ..._this.config }
+    })
   }
 
 }
