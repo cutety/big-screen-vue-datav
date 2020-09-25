@@ -12,29 +12,21 @@ export default {
       config: {
         rowNum: 6,
         data: [
-          {
-            name: '大数据',
-            value: 180
-          },
-          {
-            name: '计科',
-            value: 120
-          },
-          {
-            name: '软件工程',
-            value: 90
-          },
-          {
-            name:'网络工程',
-            value: 60
-          },
-          {
-            name:'物联网',
-            value:30
-          }
+
         ]
       }
     }
+  },
+  created() {
+    const _this = this;
+    this.$axios.get("/apply_info/major_rank/19").then(response => {
+      let rank = response.data
+      console.log(rank)
+
+      _this.config = {data:rank}
+      _this.config.data = {..._this.config.data}
+      console.log(_this.config.data)
+    })
   }
 
 }

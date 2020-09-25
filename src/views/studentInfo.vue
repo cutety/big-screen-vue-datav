@@ -1,9 +1,8 @@
 <template>
   <div id="studentInfo" >
     <div style="width:400px;height:32%;padding-top:50px ">
-      <dv-scroll-board :config="config" style="width:100%;height:3rem" />
+      <dv-scroll-board :config="config" style="width:92%;height:2.9rem;margin-left: 10px" />
     </div>
-
   </div>
 </template>
 
@@ -14,18 +13,6 @@ export default {
       config: {
         header: ["姓名", "学号", "班级"],
         data: [
-          ['陈昌源', '171164244', '嵌入式应用开发'],
-          ['樊宇', '171164242', '计算机技术与科学'],
-          ['王振铎', '171164241', '数据科学与大数据技术'],
-          ['梁琼珂', '171164243', '人工智能'],
-          ['陈昌源', '171164244', '嵌入式应用开发'],
-          ['樊宇', '171164242', '计算机技术与科学'],
-          ['王振铎', '171164241', '数据科学与大数据技术'],
-          ['梁琼珂', '171164243', '人工智能'],
-          ['陈昌源', '171164244', '嵌入式应用开发'],
-          ['樊宇', '171164242', '计算机技术与科学'],
-          ['王振铎', '171164241', '数据科学与大数据技术'],
-          ['梁琼珂', '171164243', '人工智能']
         ],
         rowNum: 5, //表格行数
         headerHeight: 35,
@@ -40,7 +27,24 @@ export default {
   },
   components: {},
   mounted() {},
-  methods: {}
+  methods: {},
+  created() {
+    const _this = this;
+    this.$axios.get("/stu_info/table/19").then(res => {
+      _this.config= {data:res.data,   rowNum: 5, //表格行数
+        headerHeight: 35,
+        headerBGC: "#0f1325", //表头
+        oddRowBGC: "#0f1325", //奇数行
+        evenRowBGC: "#171c33", //偶数行
+        index: false,
+        columnWidth: [75,100,200],
+        align: ["center"],
+        carousel:'page'
+      }
+
+      _this.config = {..._this.config}
+    });
+  }
 };
 </script>
 

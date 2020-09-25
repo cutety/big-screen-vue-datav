@@ -36,7 +36,7 @@
               <span class="text">数据分析1</span>
             </div>
             <div class="react-right ml-3" style="background-color: #0f1325;">
-              <span class="text colorBlue">数据分析2</span>
+              <span class="text colorBlue">洛阳师范学院</span>
             </div>
           </div>
           <div style="width: 40%" class="d-flex">

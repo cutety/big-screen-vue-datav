@@ -22,6 +22,10 @@ import '@/common/flexible.js';
 // 引入全局css
 import './assets/scss/style.scss';
 
+//引入vchars
+import VCharts from 'v-charts'
+Vue.use(VCharts)
+
 
 //引入echart
 import echarts from 'echarts'

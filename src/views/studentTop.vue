@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width: 300px;height: 300px">
     <dv-scroll-board :config="config" style="width:300px;height:300px;padding-top: 50px" />
   </div>
 </template>

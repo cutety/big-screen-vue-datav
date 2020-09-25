@@ -1,18 +1,22 @@
 <template>
   <div>
-    <div id="app" style="width:280px;height:33%;margin-left:20px;padding-top:50px">
-      <div id="main" style="width:280px;height:300px"></div>
+    <div id="app" style="width:1rem;height:0.33rem;margin-left:20px;padding-top:50px">
+      <div ref="chart" style="width:280px;height:300px"></div>
     </div>
   </div>
 </template>
 <script>
+import echarts from 'echarts'
 export default {
-  name: "app",
+
+  mounted() {
+    this.drawChart()
+  },
+  created() {
+  },
   methods: {
     drawChart() {
-      // 基于准备好的dom，初始化echarts实例
-      let myChart = this.$echarts.init(document.getElementById("main"));
-      // 指定图表的配置项和数据
+      let myCharts = echarts.init(this.$refs.chart)
       let option = {
         title: {
           text: ""
@@ -55,29 +59,21 @@ export default {
                     fontSize: 16
                   }
                 }
-
               }
             }
           }
         ],
         color:'#48D1CC'
-      };
-      this.$axios.get("/stu_info/age_distribution/19").then(response => {
-        let ageData = response.data
-        ageData.forEach((item) => {
-          option.xAxis.data.push(item.age.toString())
-          option.series[0].data.push(item.amount)
-        })
-        option = { ...option}
-        console.log(option.xAxis.data)
-        console.log(option.series[0].data)
-      })
-      // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option);
+      }
+      console.log("initializing")
+      this.$axios.get('/stu_info/age_distribution/19').then(res => {
+        option.xAxis.data = res.data.map(r => r.age.toString())
+        option.series[0].data=res.data.map(r => r.amount)
+        myCharts.setOption(option)
+      });
+
     }
-  },
-  mounted() {
-    this.drawChart();
   }
 }
 </script>
+

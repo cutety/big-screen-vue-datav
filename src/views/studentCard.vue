@@ -15,12 +15,11 @@
 export default {
   data () {
     return {
-
       titleItem: [
         {
           title: "学院人数",
           number: {
-            number: [500],
+            number: [0],
             toFixed: 0,
             content: "{nt}人",
           }
@@ -28,7 +27,7 @@ export default {
         {
           title: "报到人数",
           number: {
-            number: [200],
+            number: [0],
             toFixed: 0,
             content: "{nt}人"
           }
@@ -36,7 +35,7 @@ export default {
         {
           title: "报道比",
           number: {
-            number: [200],
+            number: [0],
             toFixed: 0,
             content: "{nt}%"
           }
