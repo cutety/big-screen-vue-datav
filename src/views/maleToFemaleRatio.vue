@@ -9,10 +9,7 @@
 export default {
   data() {
     return {
-      lineWidth: 30,
-      activeRadius: "90%",
-      radius: "80%",
-      activeTimeGap: 5000,
+
       config:{
         data: [
           {

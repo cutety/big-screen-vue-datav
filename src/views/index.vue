@@ -73,7 +73,7 @@
             </dv-border-box12>
             <!-- 地图 -->
             <dv-border-box10>
-              <student-map />
+              <home />
             </dv-border-box10>
             <!-- 中间 -->
           </div>
@@ -103,7 +103,7 @@ import studentInfo from "./studentInfo";
 import maleToFemaleRatio from "./maleToFemaleRatio";
 import studentTop from "@/views/studentTop";
 import studentAge from "@/views/studentAge";
-import studentMap from "@/views/studentMap";
+import home from "@/views/home";
 import studentCard from "@/views/studentCard";
 
 export default {
@@ -122,7 +122,7 @@ export default {
     maleToFemaleRatio,
     studentTop,
     studentAge,
-    studentMap,
+    home,
     studentCard
 
   },

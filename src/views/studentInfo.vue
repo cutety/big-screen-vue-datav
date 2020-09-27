@@ -31,7 +31,10 @@ export default {
   created() {
     const _this = this;
     this.$axios.get("/stu_info/table/19").then(res => {
-      _this.config= {data:res.data,   rowNum: 5, //表格行数
+      _this.config= {
+        header: ["姓名", "学号", "班级"],
+        data:res.data,
+        rowNum: 5, //表格行数
         headerHeight: 35,
         headerBGC: "#0f1325", //表头
         oddRowBGC: "#0f1325", //奇数行
