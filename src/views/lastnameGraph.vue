@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div id="app" style="width:300px;height:300px">
-      <div ref="chart" style="width:300px;height:300px"></div>
+    <div id="app" style="width:850px;height:1200px">
+      <div ref="chart" style="width:500px;height:500px"></div>
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
       let myCharts = echarts.init(this.$refs.chart)
       let option = {
         title: {
-          text: '2020级新生男女比例',
+          text: '同名同姓',
           subtext: '',
           left: 'center'
         },
@@ -31,35 +31,32 @@ export default {
           }
         },
         legend: {
+          type: 'scroll',
           orient: 'vertical',
-          left: 'left',
-          data: ['女生', '男生']
+          right: 10,
+          top: 20,
+          bottom: 20,
+          selected:{}
         },
-        color: ['rgb(254,67,101)','rgb(30,144,255)'],
+        color:['#00fa9a', '#48D1CC','#EE82EE','#DC143C','#4169E1','#778899','#FF6347','#8B4513'],
         series: [
           {
             name: "人数",
             type: "pie",
             radius: '55%',
             center: ['50%', '60%'],
-            data: [
-              {value: 187, name: '女生'},
-              {value: 287, name: '男生'},
-            ],
-            avoidLabelOverlap: false,
+            data:[],
+            avoidLabelOverlap: true,
             label:{
               normal:{
-                show: true,
-                position: 'inside',
-                formatter: '{b}:{c}人\n{d}%',//模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。{d}数据会根据value值计算百分比
-
-                textStyle : {
-                  align : 'center',
-                  baseline : 'middle',
-                  fontFamily : '微软雅黑',
-                  fontSize : 15,
-                  fontWeight : 'bolder'
-                }
+                formatter: '{b}:{c}人\n{d}%',
+              }
+            },
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
               }
             },
             itemStyle:{
@@ -70,7 +67,9 @@ export default {
           }
         ],
       }
+
       myCharts.setOption(option)
+
 
     }
   }

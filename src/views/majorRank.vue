@@ -19,13 +19,10 @@ export default {
   },
   created() {
     const _this = this;
-    this.$axios.get("/apply_info/major_rank/19").then(response => {
+    this.$axios.get("/apply_info/major_rank/20").then(response => {
       let rank = response.data
-      console.log(rank)
-
       _this.config = {data:rank}
       _this.config.data = {..._this.config.data}
-      console.log(_this.config.data)
     })
   }
 

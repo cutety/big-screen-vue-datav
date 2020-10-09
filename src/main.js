@@ -26,7 +26,10 @@ import './assets/scss/style.scss';
 import VCharts from 'v-charts'
 Vue.use(VCharts)
 
-
+//引入elementUI
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 //引入echart
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts

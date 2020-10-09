@@ -31,7 +31,7 @@ export default {
   },
   created() {
     const _this = this
-    this.$axios.get("/stu_info/male_and_female_amount").then(response => {
+    this.$axios.get("/stu_info/male_and_female_amount/20").then(response => {
       _this.config.data[0].value = response.data.male
       _this.config.data[1].value = response.data.female
       _this.config = { ..._this.config }

@@ -73,7 +73,7 @@
             </dv-border-box12>
             <!-- 地图 -->
             <dv-border-box10>
-              <home />
+              <student-map/>
             </dv-border-box10>
             <!-- 中间 -->
           </div>
@@ -87,7 +87,7 @@
               <studentAge />
             </dv-border-box-11>
             <dv-border-box-11 title="还没想好">
-              <student-top />
+              <studentTop />
             </dv-border-box-11>
           </div>
         </div>
@@ -103,9 +103,11 @@ import studentInfo from "./studentInfo";
 import maleToFemaleRatio from "./maleToFemaleRatio";
 import studentTop from "@/views/studentTop";
 import studentAge from "@/views/studentAge";
-import home from "@/views/home";
 import studentCard from "@/views/studentCard";
-
+import studentMap from "@/views/studentMap";
+import firstnamePie from "@/views/firstnamePie";
+import lastnameGraph from "@/views/lastnameGraph";
+import sameBirthday from "@/views/sameBirthday";
 export default {
   data () {
     return {
@@ -122,8 +124,11 @@ export default {
     maleToFemaleRatio,
     studentTop,
     studentAge,
-    home,
-    studentCard
+    studentCard,
+    studentMap,
+    firstnamePie,
+    lastnameGraph,
+    sameBirthday
 
   },
   mounted () {

@@ -57,34 +57,33 @@
             },
             //获取数据
             getMapData() {
+              this.$axios.get("/stu_info/province/20").then(response =>{
+                let locations = response.data;
                 let mapData = {},
                     pointData = {},
                     sum = {}
                 this.timeTitle.forEach(item => {
-                    mapData[item] = []
-                    pointData[item] = []
-                    sum[item] = 0
-                    this.geoJson.features.forEach(j => {
-                        let value = Math.random() * 10
-                        mapData[item].push({
-                            name: j.properties.name,
-                            value: value,
-                            cityCode: j.properties.adcode
-                        })
-                        pointData[item].push({
-                            name: j.properties.name,
-                            value: [j.properties.center[0], j.properties.center[1], value],
-                            cityCode: j.properties.adcode
-                        })
-                        sum[item] += value
+                  mapData[item] = []
+                  pointData[item] = []
+                  sum[item] = 0
+                  mapData[item] =locations||[]
+                /*  mapData[item].forEach(r => {
+                    sum[item] += r.value
+                  })*/
+                  /*this.geoJson.features.forEach(j => {
+                    pointData[item].push({
+                      name: j.properties.name,
+                      value: [j.properties.center[0], j.properties.center[1]],
+                      cityCode: j.properties.adcode
                     })
-                  console.log(this.geoJson.features)
-                    mapData[item] = mapData[item].sort(function (a, b) {
-                        return b.value - a.value
-                    });
+                  })*/
+                  mapData[item] = mapData[item].sort(function (a, b) {
+                    return b.value - a.value
+                  });
                 })
-
                 this.initEcharts(mapData, pointData, sum)
+              });
+
             },
             initEcharts(mapData, pointData, sum) {
                 this.myChart = echarts.init(this.$refs.allMap)
@@ -293,14 +292,14 @@
                                 top: 10,
                                 text: item + '级' +this.parentInfo[this.parentInfo.length - 1].cityName +
 
-                                    '人员分布(可点击下钻到县)',
+                                    '人员分布',
                                 textStyle: {
                                     color: 'rgb(179, 239, 255)',
                                     fontSize: 16
                                 },
                             },
                             {
-                                text: "人员总数：" + sum[item].toFixed(0) + '',
+                                text: "人员总数：" + sum[item] + '',
                                 left: 'center',
                                 top: '6.5%',
                                 textStyle: {

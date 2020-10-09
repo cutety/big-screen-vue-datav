@@ -30,7 +30,7 @@ export default {
   methods: {},
   created() {
     const _this = this;
-    this.$axios.get("/stu_info/table/19").then(res => {
+    this.$axios.get("/stu_info/table/20").then(res => {
       _this.config= {
         header: ["姓名", "学号", "班级"],
         data:res.data,

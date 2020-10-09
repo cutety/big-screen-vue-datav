@@ -1,178 +1,127 @@
 <template>
-  <div style="width: 1200px">
-
+  <div class="hello">
+    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div ref="mapbox" style="height:850px;width:1200px;"></div>
   </div>
 </template>
 
-
 <script>
-import mapImg from  '../img/map2.png'
-export default {
- data() {
-   return {
-     config: {
-       points: [
-         {
-           name: '郑州',
-           coordinate: [0.48, 0.35],
-           halo: {
-             show: true,
-           },
-           icon: {
-             src: '/img/flylineChart/mapCenterPoint.png',
-             width: 30,
-             height: 30
-           },
-           text: {
-             show: false
-           }
-         },
-         {
-           name: '新乡',
-           coordinate: [0.52, 0.23]
-         },
-         {
-           name: '焦作',
-           coordinate: [0.43, 0.29]
-         },
-         {
-           name: '开封',
-           coordinate: [0.59, 0.35]
-         },
-         {
-           name: '许昌',
-           coordinate: [0.53, 0.47]
-         },
-         {
-           name: '平顶山',
-           coordinate: [0.45, 0.54]
-         },
-         {
-           name: '洛阳',
-           coordinate: [0.36, 0.38]
-         },
-         {
-           name: '周口',
-           coordinate: [0.62, 0.55]
-         },
-         {
-           name: '漯河',
-           coordinate: [0.56, 0.56]
-         },
-         {
-           name: '南阳',
-           coordinate: [0.37, 0.66]
-         },
-         {
-           name: '信阳',
-           coordinate: [0.55, 0.81]
-         },
-         {
-           name: '驻马店',
-           coordinate: [0.55, 0.67]
-         },
-         {
-           name: '济源',
-           coordinate: [0.37, 0.29]
-         },
-         {
-           name: '三门峡',
-           coordinate: [0.20, 0.36]
-         },
-         {
-           name: '商丘',
-           coordinate: [0.76, 0.41]
-         },
-         {
-           name: '鹤壁',
-           coordinate: [0.59, 0.18]
-         },
-         {
-           name: '濮阳',
-           coordinate: [0.68, 0.17]
-         },
-         {
-           name: '安阳',
-           coordinate: [0.59, 0.10]
-         }
-       ],
-       lines: [
-         {
-           source: '新乡',
-           target: '郑州'
-         },
-         {
-           source: '焦作',
-           target: '郑州'
-         },
-         {
-           source: '开封',
-           target: '郑州'
-         },
-         {
-           source: '许昌',
-           target: '郑州'
-         },
-         {
-           source: '平顶山',
-           target: '郑州'
-         },
-         {
-           source: '洛阳',
-           target: '郑州'
-         },
-         {
-           source: '周口',
-           target: '郑州'
-         },
-         {
-           source: '漯河',
-           target: '郑州'
-         },
-         {
-           source: '南阳',
-           target: '郑州'
-         },
-         {
-           source: '信阳',
-           target: '郑州'
-         },
-         {
-           source: '驻马店',
-           target: '郑州'
-         },
-         {
-           source: '济源',
-           target: '郑州'
-         },
-         {
-           source: '三门峡',
-           target: '郑州'
-         },
-         {
-           source: '商丘',
-           target: '郑州'
-         },
-         {
-           source: '鹤壁',
-           target: '郑州'
-         },
-         {
-           source: '濮阳',
-           target: '郑州'
-         },
-         {
-           source: '安阳',
-           target: '郑州'
-         }
-       ],
-       text: {
-         show: true,
-       },
-       bgImgSrc: mapImg
-     }
-   }
- }
+import echarts from 'echarts'
+import 'echarts/map/js/china.js'
+const option = {
+  color:['transparent'],
+  title: {
+    text: '人员分布地图',
+    subtext: '20级',
+    sublink: 'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
+  },
+  itemStyle: {
+    borderColor:'transparent'
+  },
+  series: [{
+    name: '人数',
+    type: 'map',//渲染地图
+    map: 'china',//渲染中国地图
+    label: {
+      // 控制对应地区的汉字
+      show: true,
+      fontSize: 16
+    },
+    // 地图区域的颜色。
+    itemStyle: {
+      areaColor: 'rgba(248,248,255)',
+    },
+    // 地图放大倍数
+    zoom: 1.2,
+    emphasis: {
+      // 控制鼠标滑过的背景色及字体颜色
+      label: {
+        color: '#fff',
+        fontSize: 18,
+      },
+      itemStyle: {
+        areaColor: '#83b5e7'
+      }
+    },
+    data: [],//用来展示后台数据{name:'',value:''}
+    roam: true,//滚轮滚动放大缩小
+  }],
+  // 视觉映射组件
+  visualMap: [{
+    type: 'piecewise',//分段型视觉映射组件
+    show: true,
+    splitNumber: 4,//平均切分成几段,默认是5段
+    pieces: [ //分段
+      {min: 10000}, // 不指定 max，表示 max 为无限大（Infinity）。
+      {min: 1000, max: 9999},
+      {min: 100, max: 999},
+      {min: 10, max: 99},
+      // {min: 1, max: 9, label: '1 到 9（自定义label）', color: 'grey'},
+      {min: 1, max: 9},
+      {max: 1}     // 不指定 min，表示 min 为无限大（-Infinity）。
+    ],
+    align: 'left',//auto自动决定，left图左字右，right图右字左
+    orient: 'vertical',//vertical竖直，horizontal水平
+    inRange: { //定义 在选中范围中 的视觉元素
+      symbol: 'rect', //图示形状
+      color: ['#00BFFF', '#0000CD']//颜色  ffc0b1-9c0505 自动分
+    },
+  }],
+  tooltip: {  //显示提示框组件
+    trigger: 'item'
+  },
+  toolbox: {  //工具栏。内置有导出图片，数据视图，动态类型切换，数据区域缩放，重置五个工具
+    show: true,
+    orient: 'vertical',
+    left: 'right',
+    top: 'center',
+    feature: {
+      dataView: {readOnly: false},
+      restore: {},
+      saveAsImage: {}
+    }
+  },
 };
+export default {
+  name: 'HelloWorld',
+  mounted() {
+    this.getData()
+    // 通过 echarts.init 方法初始化一个 echarts 实例
+    this.mychart = echarts.init(this.$refs.mapbox);
+    // 通过 setOption 方法生成一个简单的柱状图
+    this.mychart.setOption(option)
+  },
+  methods: {
+    getData() {
+    /*  jsonp('https://interface.sina.cn/news/wap/fymap2020_data.d.json?_=15880892522427', {}, (err, data) => {
+        if (!err) {
+          //代表请求数据成功
+          console.log(data.list);
+          let list = data.data.list.map(item => ({name: item.name, value: item.value}))
+          option.series[0].data = list;
+          // 赋值完重新初始化
+          this.mychart.setOption(option)
+        }
+      })*/
+      this.$axios.get("/stu_info/province/20").then(data => {
+        //代表请求数据成功
+
+        let list=data.data.map(item => ({name:item.name, value: item.value}))
+       /* let from = ""
+        list.map(item=>{
+          from += item.name+"、"
+        })
+        console.log(from)*/
+        console.log(list)
+        option.series[0].data=list;
+        // 赋值完重新初始化
+        this.mychart.setOption(option)
+      })
+    },
+  }
+}
 </script>
-x
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+</style>
