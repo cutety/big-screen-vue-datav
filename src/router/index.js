@@ -4,10 +4,9 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [{
-  path: '/',
+  path: '/home',
   name: 'index',
   component: () => import('../views/index.vue')
-
 },{
 
   path:'/checkIn',
