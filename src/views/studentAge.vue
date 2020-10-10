@@ -67,6 +67,7 @@ export default {
       }
       console.log("initializing")
       this.$axios.get('/stu_info/age_distribution/20').then(res => {
+        console.log(res.data)
         option.xAxis.data = res.data.map(r => r.age.toString())
         option.series[0].data=res.data.map(r => r.amount)
         myCharts.setOption(option)

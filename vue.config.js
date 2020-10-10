@@ -7,6 +7,8 @@ module.exports = {
   lintOnSave:false,
   runtimeCompiler: true,
   devServer: {
+    compress: true,
+    disableHostCheck: true,
     open: process.platform === 'darwin',
     host: '0.0.0.0',
     port: 8080,
@@ -16,6 +18,7 @@ module.exports = {
       '/api': {
         target: 'http://39.97.178.218:8282/api',
         changeOrigin: true,
+        ws:true,
         pathRewrite: {
           '^/api': '',
         }

@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [{
-  path: '/home',
+  path: '/',
   name: 'index',
   component: () => import('../views/index.vue')
 },{
@@ -20,6 +20,7 @@ const routes = [{
 }]
 const router = new VueRouter({
   mode: "history",
+  base: process.env.BASE_URL,
   routes
 })
 

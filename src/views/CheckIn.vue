@@ -58,7 +58,13 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$axios.post("/checkIn",this.checkInForm).then(res => {
+      this.$axios.get("/checkIn",{
+        params:{
+          'stuId':this.checkInForm.stuId,
+          'stuName':this.checkInForm.stuName,
+          'major':this.checkInForm.major,
+        }
+      }).then(res => {
         if(res.data == "suc") {
           this.$message({
             showClose: true,

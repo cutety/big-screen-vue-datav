@@ -53,6 +53,7 @@ export default {
     this.initWebSocket()
     const _this = this
     this.$axios.get("/stu_info/amount/20").then(response => {
+        console.log("发送了一个get请求")
       _this.titleItem[0].number.number[0] = response.data
       _this.titleItem[0].number = {..._this.titleItem[0].number}
     })

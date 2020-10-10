@@ -105,7 +105,7 @@ export default {
       })*/
       this.$axios.get("/stu_info/province/20").then(data => {
         //代表请求数据成功
-
+        console.log(data.data)
         let list=data.data.map(item => ({name:item.name, value: item.value}))
        /* let from = ""
         list.map(item=>{

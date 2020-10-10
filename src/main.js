@@ -42,7 +42,7 @@ axios.defaults.baseURL="/api" //baseURL
 axios.defaults.withCredentials=true //跨域请求是否提供凭证
 
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = true;
 
 new Vue({
   router,
