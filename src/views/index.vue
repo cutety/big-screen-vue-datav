@@ -33,7 +33,7 @@
               style="width: 6.25rem; text-align: left;background-color: #0f1325;"
             >
               <span class="react-before"></span>
-              <span class="text">数据分析1</span>
+              <span class="text">亲爱的小20 洛师欢迎你</span>
             </div>
             <div class="react-right ml-3" style="background-color: #0f1325;">
               <span class="text colorBlue">洛阳师范学院</span>
@@ -86,8 +86,8 @@
             <dv-border-box-11 title="年龄分布">
               <studentAge />
             </dv-border-box-11>
-            <dv-border-box-11 title="还没想好">
-              <studentTop />
+            <dv-border-box-11 title="百家姓">
+              <firstname-pie />
             </dv-border-box-11>
           </div>
         </div>

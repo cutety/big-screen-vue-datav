@@ -57,6 +57,14 @@ export default {
       _this.titleItem[0].number.number[0] = response.data
       _this.titleItem[0].number = {..._this.titleItem[0].number}
     })
+    this.$axios.get("/checkInAmount").then(res => {
+      console.log(res.data)
+      _this.titleItem[1].number.number[0] = res.data
+      _this.titleItem[1].number = {..._this.titleItem[1].number}
+      let sum = parseFloat(_this.titleItem[0].number.number[0])
+      _this.titleItem[2].number.number[0] = res.data / sum * 100
+      _this.titleItem[2].number = {..._this.titleItem[2].number}
+    })
   },
   destroyed: function () { // 离开页面生命周期函数
     this.websocketclose();

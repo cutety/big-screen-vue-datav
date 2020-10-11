@@ -8,11 +8,18 @@
 <script>
 import echarts from 'echarts'
 import 'echarts/map/js/china.js'
+import center from "@/views/center";
 const option = {
   color:['transparent'],
   title: {
     text: '人员分布地图',
-    subtext: '20级',
+    left: 'center',
+    padding:15,
+    textStyle: {
+      fontWeight: "normal",
+      color: "#3de7c9",
+      fontSize: 28
+    },
     sublink: 'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
   },
   itemStyle: {

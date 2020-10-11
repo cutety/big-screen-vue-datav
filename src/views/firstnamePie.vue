@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div id="app" style="width:500px;height:500px">
-      <div ref="chart" style="width:500px;height:500px"></div>
+    <div id="app" style="width:300px;height:300px">
+      <div ref="chart" style="width:300px;height:320px"></div>
     </div>
   </div>
 </template>
@@ -19,7 +19,6 @@ export default {
       let myCharts = echarts.init(this.$refs.chart)
       let option = {
         title: {
-          text: '百家姓',
           subtext: '',
           left: 'center'
         },
@@ -30,14 +29,7 @@ export default {
             saveAsImage:{}
           }
         },
-        legend: {
-          type: 'scroll',
-          orient: 'vertical',
-          right: 10,
-          top: 20,
-          bottom: 20,
-          selected:{}
-        },
+
         color:['#00fa9a', '#48D1CC','#EE82EE','#DC143C','#4169E1','#778899','#FF6347','#8B4513'],
         series: [
           {
@@ -49,7 +41,8 @@ export default {
             avoidLabelOverlap: true,
             label:{
               normal:{
-                formatter: '{b}:{c}人\n{d}%',
+                formatter: '{b}:{c}\n{d}%',
+
               }
             },
             emphasis: {
