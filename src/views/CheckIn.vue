@@ -24,7 +24,7 @@
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSubmit" class="form-confirm">提交</el-button>
+            <el-button type="primary" @click="onSubmit" :disabled="isdisabled" class="form-confirm">提交</el-button>
           </el-form-item>
         </el-form>
       </el-row>
@@ -36,6 +36,7 @@
 export default {
   data() {
     return {
+      isdisabled:false,
       checkInForm:{
         stuId: "",
         stuName: "",
@@ -56,8 +57,12 @@ export default {
       }],
     }
   },
+  computed:{
+
+  },
   methods: {
     onSubmit() {
+      const _this = this;
       this.$axios.get("/checkIn",{
         params:{
           'stuId':this.checkInForm.stuId,
@@ -68,15 +73,22 @@ export default {
         if(res.data == "suc") {
           this.$message({
             showClose: true,
-            message: '恭喜你，报道成功，大学的美好在等待着你！',
+            message: '恭喜你，报道成功，洛师的美好生活在等待着你！你可以关闭这个页面了',
             type: 'success',
             duration:0,
             offset:120
           });
+          _this.isdisabled = true;
+        } else if(res.data == "fail") {
+          this.$message({
+            showClose: true,
+            message: '请检查学号是否有误',
+            type: 'error'
+          });
         } else {
           this.$message({
             showClose: true,
-            message: '错了哦，这是一条错误消息',
+            message: '请勿重复提交',
             type: 'error'
           });
         }
