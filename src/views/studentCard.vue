@@ -36,7 +36,7 @@ export default {
           }
         },
         {
-          title: "报道比",
+          title: "报到比",
           number: {
             number: [0],
             toFixed: 2,
