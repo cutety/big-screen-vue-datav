@@ -62,8 +62,10 @@ export default {
       _this.titleItem[1].number.number[0] = res.data
       _this.titleItem[1].number = {..._this.titleItem[1].number}
       let sum = parseFloat(_this.titleItem[0].number.number[0])
-      _this.titleItem[2].number.number[0] = res.data / sum * 100
-      _this.titleItem[2].number = {..._this.titleItem[2].number}
+      if(res.data > 0 || sum > 0) {
+        _this.titleItem[2].number.number[0] = res.data / sum * 100
+        _this.titleItem[2].number = {..._this.titleItem[2].number}
+      }
     })
   },
   destroyed: function () { // 离开页面生命周期函数
@@ -90,6 +92,7 @@ export default {
       console.log("WebSocket连接成功");
     },
     websocketonerror: function (e) {
+      console.log(e.data)
       console.log("WebSocket连接发生错误");
     },
     websocketonmessage: function (e) {
