@@ -56,7 +56,7 @@
         <div class="body-box">
           <!-- 第三行数据 -->
           <div class="  content-box">
-              <dv-border-box-11 title="学生信息">
+              <dv-border-box-11 title="报到信息">
                 <student-info />
               </dv-border-box-11>
               <dv-border-box-11 title="男女比例">

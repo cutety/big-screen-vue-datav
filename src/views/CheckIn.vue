@@ -78,7 +78,7 @@ export default {
             duration:0,
             offset:120
           });
-          _this.isdisabled = true;
+          //_this.isdisabled = true;
         } else if(res.data == "fail") {
           this.$message({
             showClose: true,
