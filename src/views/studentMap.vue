@@ -9,6 +9,7 @@
 import echarts from 'echarts'
 import 'echarts/map/js/china.js'
 import center from "@/views/center";
+import studentsService from "@/service/studentsService";
 const option = {
   color:['transparent'],
   title: {
@@ -92,13 +93,24 @@ const option = {
 export default {
   name: 'HelloWorld',
   mounted() {
-    this.getData()
+    this.getProvince()
+    console.log("mounted")
     // 通过 echarts.init 方法初始化一个 echarts 实例
     this.mychart = echarts.init(this.$refs.mapbox);
     // 通过 setOption 方法生成一个简单的柱状图
     this.mychart.setOption(option)
   },
   methods: {
+    async getProvince() {
+      const {data : res} = await studentsService.getProvince()
+      console.log(res)
+      let list=res.data.map(item => ({name:item.name, value: item.value}))
+
+      console.log(list)
+      option.series[0].data=list;
+      // 赋值完重新初始化
+      this.mychart.setOption(option)
+    },
     getData() {
     /*  jsonp('https://interface.sina.cn/news/wap/fymap2020_data.d.json?_=15880892522427', {}, (err, data) => {
         if (!err) {
@@ -113,16 +125,7 @@ export default {
       this.$axios.get("/stu_info/province/20").then(data => {
         //代表请求数据成功
         console.log(data.data)
-        let list=data.data.map(item => ({name:item.name, value: item.value}))
-       /* let from = ""
-        list.map(item=>{
-          from += item.name+"、"
-        })
-        console.log(from)*/
-        console.log(list)
-        option.series[0].data=list;
-        // 赋值完重新初始化
-        this.mychart.setOption(option)
+
       })
     },
   }

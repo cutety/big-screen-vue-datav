@@ -6,6 +6,7 @@
   </div>
 </template>
 <script>
+import studentsService from "@/service/studentsService";
 export default {
   data() {
     return {
@@ -30,12 +31,16 @@ export default {
     }
   },
   created() {
-    const _this = this
-    this.$axios.get("/stu_info/male_and_female_amount/20").then(response => {
-      _this.config.data[0].value = response.data.male
-      _this.config.data[1].value = response.data.female
-      _this.config = { ..._this.config }
-    })
+    this.getMaleAndFemaleAmount()
+  },
+  methods: {
+    async getMaleAndFemaleAmount() {
+      studentsService.updateGrade(19)
+      const { data : res} = await studentsService.getMaleAndFemaleAmount()
+      this.config.data[0].value = res.data.male
+      this.config.data[1].value = res.data.female
+      this.config = { ...this.config }
+    }
   }
 
 }

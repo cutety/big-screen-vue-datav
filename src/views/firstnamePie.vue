@@ -7,6 +7,7 @@
 </template>
 <script>
 import echarts from 'echarts'
+import studentsService from "@/service/studentsService";
 export default {
 
   mounted() {
@@ -37,7 +38,7 @@ export default {
             type: "pie",
             radius: '55%',
             center: ['50%', '60%'],
-            data:[{"value":53,"name":"王"},{"value":52,"name":"李"},{"value":32,"name":"张"},{"value":24,"name":"刘"},{"value":337,"name":"其他"},{"value":1,"name":"唐"},{"value":1,"name":"湛"},{"value":1,"name":"佟"}],
+            data:[],
             avoidLabelOverlap: true,
             label:{
               normal:{
@@ -60,10 +61,17 @@ export default {
           }
         ],
       }
+      this.getFirstnamePie().then(res => {
+        option.series[0].data = res.data
+        myCharts.setOption(option)
+      })
 
-      myCharts.setOption(option)
 
 
+    },
+    async getFirstnamePie() {
+      const { data : res} = await studentsService.getFirstnamePie()
+      return res
     }
   }
 }

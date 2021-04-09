@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import studentsService from "@/service/studentsService";
 export default {
   data() {
     return {
@@ -50,25 +51,24 @@ export default {
   components: {},
   created() {
     this.initWebSocket()
-    const _this = this
-    this.$axios.get("/stu_info/amount/20").then(response => {
-      _this.titleItem[0].number.number[0] = response.data
-      _this.titleItem[0].number = {..._this.titleItem[0].number}
-      this.$axios.get("/checkInAmount").then(res => {
-        _this.titleItem[1].number.number[0] = res.data
-        _this.titleItem[1].number = {..._this.titleItem[1].number}
-        let sum = parseFloat(_this.titleItem[0].number.number[0])
-        _this.titleItem[2].number.number[0] = res.data / sum * 100
-        _this.titleItem[2].number = {..._this.titleItem[2].number}
 
-      })
-    })
+    this.getStudentsAmount()
 
   },
   destroyed: function () { // 离开页面生命周期函数
     this.websocketclose();
   },
   methods: {
+    async getStudentsAmount() {
+      const { data : result}  = await studentsService.getStudentsAmount()
+      this.titleItem[0].number.number[0] = result.data
+      this.titleItem[0].number = {...this.titleItem[0].number}
+      const { data : res}  = await studentsService.getStudentsCheckinAmount()
+      this.titleItem[1].number.number[0] = res.data
+      this.titleItem[1].number = {...this.titleItem[1].number}
+      this.titleItem[2].number.number[0] = res.data / this.titleItem[0].number.number[0] * 100
+      this.titleItem[2].number = {...this.titleItem[2].number}
+    },
     collapse: function () {
       this.isCollapse = !this.isCollapse;
       if (this.isCollapse) {
@@ -94,14 +94,8 @@ export default {
     },
     websocketonmessage: function (e) {
       let msg = e.data
+      // eslint-disable-next-line no-empty
       if (msg == "update") {
-        console.log(msg)
-        this.titleItem[1].number.number[0] = this.titleItem[1].number.number[0] + 1
-        let checkInSum = parseFloat(this.titleItem[1].number.number[0])
-        let sum = parseFloat(this.titleItem[0].number.number[0])
-        this.titleItem[2].number.number[0] = checkInSum / sum * 100
-        this.titleItem[1].number = {...this.titleItem[1].number}
-        this.titleItem[2].number = {...this.titleItem[2].number}
 
       }
     },

@@ -15,13 +15,13 @@ module.exports = {
     https: false,
     hotOnly: false,
     proxy: {
-      '/api': {
+      '/api/v1': {
         //39.97.178.218
-        target: 'http://localhost:8282/api',
+        target: 'http://localhost:3000/api/v1',
         changeOrigin: true,
         ws:true,
         pathRewrite: {
-          '^/api': '',
+          '^/api/v1': '',
         }
       }
     } // 设置代理

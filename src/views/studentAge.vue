@@ -7,6 +7,7 @@
 </template>
 <script>
 import echarts from 'echarts'
+import studentsService from "@/service/studentsService";
 export default {
 
   mounted() {
@@ -65,14 +66,15 @@ export default {
         ],
         color:'#48D1CC'
       }
-      console.log("initializing")
-      this.$axios.get('/stu_info/age_distribution/20').then(res => {
-        console.log(res.data)
-        option.xAxis.data = res.data.map(r => r.age.toString())
-        option.series[0].data=res.data.map(r => r.amount)
+      this.getAgeDistribution().then(res => {
+        option.xAxis.data = res.data.map(r => r.name)
+        option.series[0].data=res.data.map(r => r.value)
         myCharts.setOption(option)
-      });
-
+      })
+    },
+    async getAgeDistribution() {
+      const { data : res} = await studentsService.getAgeDistribution()
+      return res
     }
   }
 }

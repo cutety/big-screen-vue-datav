@@ -63,7 +63,7 @@ export default {
   methods: {
     onSubmit() {
       const _this = this;
-      this.$axios.get("/checkIn",{
+      this.$axios.get("/checkin/new",{
         params:{
           'stuId':this.checkInForm.stuId,
           'stuName':this.checkInForm.stuName,

@@ -38,7 +38,7 @@ Vue.use(VueAxios,axios);
 //引入axios
 import axios from 'axios';
 Vue.prototype.$axios = axios //全局注册，使用方法为:this.$axios
-axios.defaults.baseURL="/api" //baseURL
+axios.defaults.baseURL="/api/v1" //baseURL
 axios.defaults.withCredentials=true //跨域请求是否提供凭证
 
 
