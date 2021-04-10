@@ -8,7 +8,8 @@
 
 <script>
 
-
+import studentsService from "@/service/studentsService";
+import { formatTime } from '../utils/index.js'
 export default {
   data() {
     return {
@@ -22,8 +23,9 @@ export default {
         oddRowBGC: "#0f1325", //奇数行
         evenRowBGC: "#171c33", //偶数行
         index: false,
-        columnWidth: [75,100,200],
+        columnWidth: [75, 150, 200],
         align: ["center"],
+        carousel:'page'
       },
 
     };
@@ -68,28 +70,37 @@ export default {
     },
     websocketclose: function (e) {
       console.log("connection closed (" + e.code + ")");
+    },
+    async getCheckinInfo() {
+      const { data : res} = await studentsService.getCheckinInfo()
+      const list = []
+      for (let i in res.data) {
+        let arr = []
+        arr.push(res.data[i].stu_name)
+        arr.push(res.data[i].major)
+        let date = formatTime(res.data[i].checkin_time, "yyyy-MM-dd HH:mm:ss")
+        arr.push(date)
+        list.push(arr)
+      }
+      this.config= {
+          header: ["姓名", "专业", "报道时间"],
+          data:list,
+          rowNum: 5, //表格行数
+          headerHeight: 35,
+          headerBGC: "#0f1325", //表头
+          oddRowBGC: "#0f1325", //奇数行
+          evenRowBGC: "#171c33", //偶数行
+          index: false,
+          columnWidth: [75, 150, 200],
+          align: ["center"],
+          carousel:'page'
+        }
+      this.config = {...this.config}
     }
   },
   created() {
-    this.initWebSocket()
-    const _this = this;
-    this.$axios.get("/checkInInfo/20").then(res => {
-      _this.config= {
-        header: ["姓名", "专业", "报道时间"],
-        data:res.data,
-        rowNum: 5, //表格行数
-        headerHeight: 35,
-        headerBGC: "#0f1325", //表头
-        oddRowBGC: "#0f1325", //奇数行
-        evenRowBGC: "#171c33", //偶数行
-        index: false,
-        columnWidth: [75,175,125],
-        align: ["center"],
-        carousel:'page'
-      }
-      _this.config = {..._this.config}
-    });
-  }
+    this.getCheckinInfo()
+  },
 };
 </script>
 

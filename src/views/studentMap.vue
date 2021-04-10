@@ -103,10 +103,7 @@ export default {
   methods: {
     async getProvince() {
       const {data : res} = await studentsService.getProvince()
-      console.log(res)
       let list=res.data.map(item => ({name:item.name, value: item.value}))
-
-      console.log(list)
       option.series[0].data=list;
       // 赋值完重新初始化
       this.mychart.setOption(option)

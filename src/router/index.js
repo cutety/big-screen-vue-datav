@@ -14,6 +14,11 @@ const routes = [{
   component:() => import('../views/CheckIn')
 },{
 
+  path:'/gradeChooser',
+  name:'GradeChooser',
+  component:() => import('../views/gradeChooser')
+},{
+
   path:'/webSocket',
   name:'WebSocket',
   component:() => import('../views/WebSocket')

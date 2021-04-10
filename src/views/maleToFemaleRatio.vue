@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     async getMaleAndFemaleAmount() {
-      studentsService.updateGrade(19)
       const { data : res} = await studentsService.getMaleAndFemaleAmount()
       this.config.data[0].value = res.data.male
       this.config.data[1].value = res.data.female
