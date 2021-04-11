@@ -46,12 +46,17 @@ const getGradeList = () => {
   return request.get(`students/grade/list`)
 }
 
+const checkin = (params) => {
+  return request.post('students/checkin/new', JSON.stringify(params))
+}
+
 const getGrade = () => {
   return grade
 }
 const updateGrade = (param) => {
   grade = param
 }
+
 
 export default {
   grade,
@@ -66,5 +71,5 @@ export default {
   getProvince,
   getCheckinInfo,
   getGradeList,
-
+  checkin,
 }

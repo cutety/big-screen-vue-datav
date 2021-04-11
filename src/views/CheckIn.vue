@@ -8,10 +8,10 @@
         <br/>
         <el-form ref="form" :model="checkInForm" label-width="0px">
           <el-form-item class="form-item">
-            <el-input placeholder="请输入学号" v-model="checkInForm.stuId"></el-input>
+            <el-input placeholder="请输入学号" v-model="checkInForm.stu_id"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input placeholder="请输入姓名" v-model="checkInForm.stuName"></el-input>
+            <el-input placeholder="请输入姓名" v-model="checkInForm.stu_name"></el-input>
           </el-form-item>
           <el-form-item>
             <el-select v-model="checkInForm.major" placeholder="请选择">
@@ -33,13 +33,15 @@
 </template>
 
 <script>
+import studentsService from "@/service/studentsService";
+
 export default {
   data() {
     return {
       isdisabled:false,
       checkInForm:{
-        stuId: "",
-        stuName: "",
+        stu_id: "",
+        stu_name: "",
         major: ""
       },
       options: [{
@@ -61,38 +63,59 @@ export default {
 
   },
   methods: {
+    async checkin() {
+      const {data: res} = await studentsService.checkin(this.checkInForm)
+      console.log(res)
+      if(res.status == 200) {
+        this.$message({
+          showClose: true,
+          message: '恭喜你，报道成功，洛师的美好生活在等待着你！你可以关闭这个页面了',
+          type: 'success',
+          duration:0,
+          offset:120
+        });
+        this.isdisabled = true;
+      } else {
+        this.$message({
+          showClose: true,
+          message: '报到失败，请检查学号是否正确',
+          type: 'error'
+        });
+      }
+    },
     onSubmit() {
-      const _this = this;
-      this.$axios.get("/checkin/new",{
-        params:{
-          'stuId':this.checkInForm.stuId,
-          'stuName':this.checkInForm.stuName,
-          'major':this.checkInForm.major,
-        }
-      }).then(res => {
-        if(res.data == "suc") {
-          this.$message({
-            showClose: true,
-            message: '恭喜你，报道成功，洛师的美好生活在等待着你！你可以关闭这个页面了',
-            type: 'success',
-            duration:0,
-            offset:120
-          });
-          //_this.isdisabled = true;
-        } else if(res.data == "fail") {
-          this.$message({
-            showClose: true,
-            message: '请检查学号是否有误',
-            type: 'error'
-          });
-        } else {
-          this.$message({
-            showClose: true,
-            message: '请勿重复提交',
-            type: 'error'
-          });
-        }
-      })
+      this.checkin()
+      // const _this = this;
+      // this.$axios.get("/students/checkin/new",{
+      //   params:{
+      //     'stuId':this.checkInForm.stuId,
+      //     'stuName':this.checkInForm.stuName,
+      //     'major':this.checkInForm.major,
+      //   }
+      // }).then(res => {
+      //   if(res.data == "suc") {
+      //     this.$message({
+      //       showClose: true,
+      //       message: '恭喜你，报道成功，洛师的美好生活在等待着你！你可以关闭这个页面了',
+      //       type: 'success',
+      //       duration:0,
+      //       offset:120
+      //     });
+      //     //_this.isdisabled = true;
+      //   } else if(res.data == "fail") {
+      //     this.$message({
+      //       showClose: true,
+      //       message: '请检查学号是否有误',
+      //       type: 'error'
+      //     });
+      //   } else {
+      //     this.$message({
+      //       showClose: true,
+      //       message: '请勿重复提交',
+      //       type: 'error'
+      //     });
+      //   }
+      // })
     }
   }
 }
