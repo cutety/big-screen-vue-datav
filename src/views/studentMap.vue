@@ -107,6 +107,9 @@ export default {
       option.series[0].data=list;
       // 赋值完重新初始化
       this.mychart.setOption(option)
+      this.mychart.on("click", params => {
+        console.log(params)
+      })
     },
     getData() {
     /*  jsonp('https://interface.sina.cn/news/wap/fymap2020_data.d.json?_=15880892522427', {}, (err, data) => {

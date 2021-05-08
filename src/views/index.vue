@@ -82,7 +82,7 @@
 
           <!-- 第四行数据 -->
           <div class="bototm-box">
-            <dv-border-box-11 title="院系之最">
+            <dv-border-box-11 title="校徽">
               <studentTop/>
             </dv-border-box-11>
             <dv-border-box-11 title="年龄分布">

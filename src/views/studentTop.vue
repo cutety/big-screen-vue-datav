@@ -1,7 +1,8 @@
 <template>
   <div>
     <div id="app" style="width:300px;height:250px">
-      <dv-scroll-board :config="config" style="width:270px;height:300px;margin-top: 55px;margin-left: 10px" />
+<!--      <dv-scroll-board :config="config" style="width:270px;height:300px;margin-top: 55px;margin-left: 10px" />-->
+      <img style="margin-top:50px;width:300px;height:250px" src="../img/logo.png"/>
     </div>
   </div>
 </template>
